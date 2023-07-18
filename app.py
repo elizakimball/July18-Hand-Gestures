@@ -61,7 +61,7 @@ def main():
     mp_hands = mp.solutions.hands
     hands = mp_hands.Hands(
         static_image_mode=use_static_image_mode,
-        max_num_hands=1,
+        max_num_hands=2,
         min_detection_confidence=min_detection_confidence,
         min_tracking_confidence=min_tracking_confidence,
     )
@@ -231,7 +231,7 @@ def calc_landmark_list(image, landmarks):
 def pre_process_landmark(landmark_list):
     temp_landmark_list = copy.deepcopy(landmark_list)
 
-    # Convert to relative coordinates
+    # Convert to relative coordinates 
     base_x, base_y = 0, 0
     for index, landmark_point in enumerate(temp_landmark_list):
         if index == 0:
@@ -244,7 +244,7 @@ def pre_process_landmark(landmark_list):
     temp_landmark_list = list(
         itertools.chain.from_iterable(temp_landmark_list))
 
-    # Normalization
+    # Normalization 
     max_value = max(list(map(abs, temp_landmark_list)))
 
     def normalize_(n):
